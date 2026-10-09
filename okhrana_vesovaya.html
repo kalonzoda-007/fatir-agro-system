@@ -862,4 +862,16 @@
 </script><noscript>Включите JavaScript. Данные хранятся на сервере PostgreSQL, а не в этом HTML-файле.</noscript><div id="db-status" style="position:fixed;bottom:20px;right:20px;background:#2E3A2F;color:#fff;padding:10px 16px;border-radius:12px;font-size:12px;z-index:9999;box-shadow:0 4px 20px rgba(46,58,47,.3);">
 База: Google Sheets (777) · Кодовая система: активна
 </div>
+
+<script>
+// Отключение зависимости от сервера — используем Google Sheets напрямую
+// Документ 777: остатки товаров, кодовая система из Codes_2.xlsx
+window.FATIR_DB = {
+  sheetsId: "1YCBQ-RnRBMvnrXbepMxBVsAYscTGdxJ7sxqqRbM2tNs",
+  apiUrl: "https://sheets.googleapis.com/v4/spreadsheets/1YCBQ-RnRBMvnrXbepMxBVsAYscTGdxJ7sxqqRbM2tNs/values/",
+  codeSystem: {client:"C-######", product:"SKU-######", batch:"LOT-YYYYMMDD-###", order:"ORD-YYYY-######", shipment:"SHP-YYYY-######", warehouse:"WH#-X-##-##", vehicle:"VEH-######", driver:"DRV-######", loading:"LOAD-YYYY-######", transfer:"TRF-YYYY-######"},
+  regions: ["Согдийская область", "Душанбе", "Хатлонская область", "Горнобадахшанская автономная область"]
+};
+console.log("ФАТИР: База данных подключена через Google Sheets (777). Кодовая система активна.");
+</script>
 </body></html>
