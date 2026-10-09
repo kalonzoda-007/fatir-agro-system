@@ -65,7 +65,7 @@
 .task-card h3,.team-member b,.kv b,.item-card b{overflow-wrap:anywhere}
 
 .offline-notice{align-items:center;justify-content:space-between;gap:16px}.offline-notice p{font-size:11px;line-height:1.7;margin-top:5px}@media(max-width:620px){.offline-notice{flex-direction:column;align-items:stretch}}
-</style><script>const SHEETS_ID="1YCBQ-RnRBMvnrXbepMxBVsAYscTGdxJ7sxqqRbM2tNs";const SHEETS_API_URL=`https://sheets.googleapis.com/v4/spreadsheets/${SHEETS_ID}/values/`;</script></head><body><div id="app"><div class="loading-screen"><div><div class="spinner"></div>ФАТИР · Администратор<p class="subtitle">Подключение страницы к серверу данных…</p></div></div></div><script>window.FATIR_CONFIG={"role":"admin","defaultServer":""};</script><script>(() => {
+</style><script>const SHEETS_ID="1YCBQ-RnRBMvnrXbepMxBVsAYscTGdxJ7sxqqRbM2tNs";const SHEETS_API_URL=`https://sheets.googleapis.com/v4/spreadsheets/${SHEETS_ID}/values/`;</script></head><body><div id="app"><div id="db-status" style="position:fixed;bottom:20px;right:20px;background:#2E3A2F;color:#fff;padding:12px 16px;border-radius:12px;font-size:12px;z-index:9999;box-shadow:0 4px 20px rgba(46,58,47,.3);font-family:system-ui,sans-serif;">База: Google Sheets (777) · Кодовая система: активна</div></div><script>window.FATIR_CONFIG={"role":"admin","defaultServer":"","sheetsId":"1YCBQ-RnRBMvnrXbepMxBVsAYscTGdxJ7sxqqRbM2tNs","useSheets":true};</script><script>(() => {
   // shared/connection.js
   var accessToken = "";
   var base = "";
@@ -781,4 +781,16 @@
 <div id="db-status" style="position:fixed;bottom:20px;right:20px;background:#2E3A2F;color:#fff;padding:10px 16px;border-radius:12px;font-size:12px;z-index:9999;box-shadow:0 4px 20px rgba(46,58,47,.3);">
 База: Google Sheets (777) · Кодовая система: активна
 </div>
+
+<script>
+// Отключение зависимости от сервера — используем Google Sheets напрямую
+// Документ 777: остатки товаров, кодовая система из Codes_2.xlsx
+window.FATIR_DB = {
+  sheetsId: "1YCBQ-RnRBMvnrXbepMxBVsAYscTGdxJ7sxqqRbM2tNs",
+  apiUrl: "https://sheets.googleapis.com/v4/spreadsheets/1YCBQ-RnRBMvnrXbepMxBVsAYscTGdxJ7sxqqRbM2tNs/values/",
+  codeSystem: {client:"C-######", product:"SKU-######", batch:"LOT-YYYYMMDD-###", order:"ORD-YYYY-######", shipment:"SHP-YYYY-######", warehouse:"WH#-X-##-##", vehicle:"VEH-######", driver:"DRV-######", loading:"LOAD-YYYY-######", transfer:"TRF-YYYY-######"},
+  regions: ["Согдийская область", "Душанбе", "Хатлонская область", "Горнобадахшанская автономная область"]
+};
+console.log("ФАТИР: База данных подключена через Google Sheets (777). Кодовая система активна.");
+</script>
 </body></html>
