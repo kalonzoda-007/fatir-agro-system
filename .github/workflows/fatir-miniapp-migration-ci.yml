@@ -1,0 +1,29 @@
+name: FATIR MiniApp migration build (staging only)
+on:
+  pull_request:
+    paths:
+      - 'migration/fatir-miniapp/**'
+      - '.github/workflows/fatir-miniapp-migration-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  frontend-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: migration/fatir-miniapp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: migration/fatir-miniapp/package-lock.json
+      - run: npm install --no-audit --no-fund
+      - run: npm run typecheck
+      - run: npm run build
+      - name: Check static output
+        run: test -f dist/index.html
+      - name: Syntax-check Worker without deploying
+        run: node --check worker/src/index.js
